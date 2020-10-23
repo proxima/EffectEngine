@@ -166,6 +166,8 @@ TODO			with this flag will calculate an average time for the duration
 -w<secs>		Indicates a warning message should be displayed <secs>
 				seconds before the effect is expected to fall.  This flag 
 				implies -t.
+				
+-z<world>			Allows the effect to be defined as applying only to a certain TF world.
 
 
 -------------------------------------------------------------------------------
