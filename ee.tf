@@ -1,6 +1,6 @@
-/_echo * Loading Effect Engine v1.7 [ 20 Oct 2018 ]
+/_echo * Loading Effect Engine v1.8 [ 23 Oct 2020 ]
 /_echo * Created by Musashi
-/_echo * Refer to file "effect_engine.txt" for help.
+/_echo * Refer to file "_readme effect_engine.txt" for help.
 ;;maybe /eff_help *?
 /loaded ee.tf
 
@@ -53,6 +53,7 @@
 ;;[ ] Defaults for a heap of things
 ;;[X] Add status bar handling.
 ;;[X] Move icon handling to eff_com
+;;[X] Added -z option to eff_def for defining world
 
 ;;Load global effect engine settings from a separate file.
 ;;You really shouldn't ever need to edit anything other than
@@ -92,7 +93,7 @@
 
 /def eff_def = \
 	/let debug=0%;\
-	/if (!getopts("a:c:d:e:fi:l#m:n:op:#qr:stu:w#")) /return 0%;\
+	/if (!getopts("a:c:d:e:fi:l#m:n:op:#qr:stu:w#z")) /return 0%;\
 		/endif%;\
 	/if (strstr({opt_i}, " ") != -1) \
 		/return $[eff_err({0}, strcat("Can't create '", {opt_i}, " - id may not contain spaces."))]%;\
@@ -128,9 +129,9 @@
 	/def effect_%{opt_i}_ready_trig=%;\
 	/if (!{opt_p}) /let opt_p=%{eff_priority}%;\
 	/endif%;\
-	/if (!{opt_w}) /let opt_w=%;\
+	/if (!{opt_z}) /let opt_z=%;\
 	/endif%;\
-	/def -p%{opt_p} -w%{opt_p} -F -a%{eff_attr_up} -mregexp -t`%{eff_prefix}%{opt_u}` effect_%{opt_i}_up = \
+	/def -p%{opt_p} -w%{opt_z} -F -a%{eff_attr_up} -mregexp -t`%{eff_prefix}%{opt_u}` effect_%{opt_i}_up = \
 		/eff_up %{opt_i}%%;\
 		/test effect_%{opt_i}_up_trig("%%{P1}", "%%{P2}", "%%{P3}", "%%{P4}", "%%{P5}", "%%{P6}", "%%{P7}", "%%{P8}","%%{P9}")%;\
 	/if (!{opt_f}) \
