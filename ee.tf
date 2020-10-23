@@ -128,7 +128,9 @@
 	/def effect_%{opt_i}_ready_trig=%;\
 	/if (!{opt_p}) /let opt_p=%{eff_priority}%;\
 	/endif%;\
-	/def -p%{opt_p} -F -a%{eff_attr_up} -mregexp -t`%{eff_prefix}%{opt_u}` effect_%{opt_i}_up = \
+	/if (!{opt_w}) /let opt_w=%;\
+	/endif%;\
+	/def -p%{opt_p} -w%{opt_p} -F -a%{eff_attr_up} -mregexp -t`%{eff_prefix}%{opt_u}` effect_%{opt_i}_up = \
 		/eff_up %{opt_i}%%;\
 		/test effect_%{opt_i}_up_trig("%%{P1}", "%%{P2}", "%%{P3}", "%%{P4}", "%%{P5}", "%%{P6}", "%%{P7}", "%%{P8}","%%{P9}")%;\
 	/if (!{opt_f}) \
